@@ -63,6 +63,25 @@
             letter-spacing: 2px;
         }
 
+        /* ----- АНИМАЦИЯ ПОЯВЛЕНИЯ ТЕКСТА (FADE-IN) ----- */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .visible .fade-up {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Задержки для последовательного появления */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+
         /* ================= HERO ================= */
         .hero-section {
             text-align: center;
@@ -73,25 +92,6 @@
             font-size: 1.8rem;
             letter-spacing: 3px;
             margin-bottom: 30px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .hero-section.visible h1 {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .hero-date {
-            opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
-        }
-
-        .hero-section.visible .hero-date {
-            opacity: 1;
-            transform: scale(1);
         }
 
         .hero-date .number {
@@ -117,25 +117,7 @@
         .photo-grid-item {
             aspect-ratio: 1/1;
             overflow: hidden;
-            opacity: 0;
-            transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
         }
-
-        /* Начальные позиции для эффекта сборки */
-        .photo-grid-item:nth-child(1) { transform: translate(-30px, -30px); }
-        .photo-grid-item:nth-child(2) { transform: translate(30px, -30px); }
-        .photo-grid-item:nth-child(3) { transform: translate(-30px, 30px); }
-        .photo-grid-item:nth-child(4) { transform: translate(30px, 30px); }
-
-        .hero-section.visible .photo-grid-item {
-            opacity: 1;
-            transform: translate(0, 0);
-        }
-
-        .hero-section.visible .photo-grid-item:nth-child(1) { transition-delay: 0.1s; }
-        .hero-section.visible .photo-grid-item:nth-child(2) { transition-delay: 0.2s; }
-        .hero-section.visible .photo-grid-item:nth-child(3) { transition-delay: 0.3s; }
-        .hero-section.visible .photo-grid-item:nth-child(4) { transition-delay: 0.4s; }
 
         .photo-grid img {
             width: 100%;
@@ -146,14 +128,7 @@
 
         .sub-text {
             font-style: italic;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s;
-        }
-
-        .hero-section.visible .sub-text {
             opacity: 0.7;
-            transform: translateY(0);
         }
 
         /* ================= DETAILS ================= */
@@ -165,14 +140,6 @@
 
         .text-content {
             width: 100%;
-            opacity: 0;
-            transform: translateX(-20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .details-section.visible .text-content {
-            opacity: 1;
-            transform: translateX(0);
         }
 
         .details-section h2 {
@@ -187,17 +154,6 @@
         .date-info .big-day {
             font-size: 3rem;
             font-style: italic;
-        }
-
-        .photo-container {
-            opacity: 0;
-            transform: translateX(20px);
-            transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
-        }
-
-        .details-section.visible .photo-container {
-            opacity: 1;
-            transform: translateX(0);
         }
 
         .photo-container img {
@@ -217,14 +173,6 @@
             font-family: var(--font-cursive);
             font-size: 2rem;
             margin-bottom: 20px;
-            opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .calendar-section.visible .calendar-title {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .calendar-strip {
@@ -234,12 +182,6 @@
             padding-bottom: 10px;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
-            opacity: 0;
-            transition: opacity 0.8s ease 0.2s;
-        }
-
-        .calendar-section.visible .calendar-strip {
-            opacity: 1;
         }
 
         .calendar-strip::-webkit-scrollbar {
@@ -277,17 +219,6 @@
             gap: 25px;
         }
 
-        .venue-photo {
-            opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .venue-section.visible .venue-photo {
-            opacity: 1;
-            transform: scale(1);
-        }
-
         .venue-photo img {
             width: 100%;
             height: auto;
@@ -297,14 +228,6 @@
 
         .venue-info {
             text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
-        }
-
-        .venue-section.visible .venue-info {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .map-wrapper {
@@ -319,17 +242,6 @@
         }
 
         /* ================= TIMER ================= */
-        .timer-title {
-            opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .timer-section.visible .timer-title {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         .timer-container {
             display: flex;
             justify-content: center;
@@ -347,20 +259,7 @@
             justify-content: center;
             align-items: center;
             background: white;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: opacity 0.5s ease, transform 0.5s ease;
         }
-
-        .timer-section.visible .timer-item {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .timer-section.visible .timer-item:nth-child(1) { transition-delay: 0.1s; }
-        .timer-section.visible .timer-item:nth-child(2) { transition-delay: 0.2s; }
-        .timer-section.visible .timer-item:nth-child(3) { transition-delay: 0.3s; }
-        .timer-section.visible .timer-item:nth-child(4) { transition-delay: 0.4s; }
 
         .timer-value {
             font-size: 1.8rem;
@@ -384,20 +283,7 @@
             margin-bottom: 25px;
             padding-left: 10px;
             border-left: 2px solid #ddd;
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
         }
-
-        .timing-section.visible .timing-item {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .timing-section.visible .timing-item:nth-child(1) { transition-delay: 0.1s; }
-        .timing-section.visible .timing-item:nth-child(2) { transition-delay: 0.2s; }
-        .timing-section.visible .timing-item:nth-child(3) { transition-delay: 0.3s; }
-        .timing-section.visible .timing-item:nth-child(4) { transition-delay: 0.4s; }
 
         .time {
             font-style: italic;
@@ -429,20 +315,6 @@
             margin-bottom: 30px;
         }
 
-        .detail-item {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .details-dresscode-section.visible .detail-item {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .details-dresscode-section.visible .detail-item:nth-child(1) { transition-delay: 0.1s; }
-        .details-dresscode-section.visible .detail-item:nth-child(2) { transition-delay: 0.2s; }
-
         .detail-item h4 {
             font-family: var(--font-accent);
             font-size: 1.2rem;
@@ -453,14 +325,6 @@
         .dresscode-text {
             text-align: center;
             margin-bottom: 20px;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
-        }
-
-        .details-dresscode-section.visible .dresscode-text {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .palette {
@@ -474,21 +338,7 @@
             width: 45px;
             height: 90px;
             border-radius: 25px;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: opacity 0.5s ease, transform 0.5s ease;
         }
-
-        .details-dresscode-section.visible .color-stroke {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .details-dresscode-section.visible .color-stroke:nth-child(1) { transition-delay: 0.3s; }
-        .details-dresscode-section.visible .color-stroke:nth-child(2) { transition-delay: 0.4s; }
-        .details-dresscode-section.visible .color-stroke:nth-child(3) { transition-delay: 0.5s; }
-        .details-dresscode-section.visible .color-stroke:nth-child(4) { transition-delay: 0.6s; }
-        .details-dresscode-section.visible .color-stroke:nth-child(5) { transition-delay: 0.7s; }
 
         .c1 { background: #D4C5B0; }
         .c2 { background: #9E8B7D; }
@@ -501,14 +351,6 @@
             text-align: center;
             margin-bottom: 30px;
             font-style: italic;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
-        }
-
-        .rsvp-section.visible .rsvp-subtitle {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .rsvp-form {
@@ -521,21 +363,7 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
         }
-
-        .rsvp-section.visible .form-group {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .rsvp-section.visible .form-group:nth-child(1) { transition-delay: 0.1s; }
-        .rsvp-section.visible .form-group:nth-child(2) { transition-delay: 0.2s; }
-        .rsvp-section.visible .form-group:nth-child(3) { transition-delay: 0.3s; }
-        .rsvp-section.visible .form-group:nth-child(4) { transition-delay: 0.4s; }
-        .rsvp-section.visible .form-group:nth-child(5) { transition-delay: 0.5s; }
 
         label {
             font-weight: 500;
@@ -577,15 +405,7 @@
             letter-spacing: 2px;
             cursor: pointer;
             margin-top: 10px;
-            transition: opacity 0.2s;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.5s ease 0.6s, transform 0.5s ease 0.6s, background 0.2s;
-        }
-
-        .rsvp-section.visible .rsvp-button {
-            opacity: 1;
-            transform: translateY(0);
+            transition: background 0.2s;
         }
 
         .rsvp-button:hover {
@@ -656,27 +476,29 @@
     <!-- 1. ПЕРВЫЙ БЛОК: ИМЕНА, ДАТА И ФОТО-СЕТКА 2x2 -->
     <section class="hero-section">
         <div class="container">
-            <h1>Никита и Мария</h1>
-            <div class="hero-date">
+            <h1 class="fade-up">Никита и Мария</h1>
+            <div class="hero-date fade-up delay-1">
                 <span class="number">16</span>
                 <span class="month">Августа</span>
             </div>
 
             <div class="photo-grid">
-                <div class="photo-grid-item"><img src="https://via.placeholder.com/300x300?text=Фото+1" alt="Момент 1"></div>
-                <div class="photo-grid-item"><img src="https://via.placeholder.com/300x300?text=Фото+2" alt="Момент 2"></div>
-                <div class="photo-grid-item"><img src="https://via.placeholder.com/300x300?text=Фото+3" alt="Момент 3"></div>
-                <div class="photo-grid-item"><img src="https://via.placeholder.com/300x300?text=Фото+4" alt="Момент 4"></div>
+                <div class="photo-grid-item"><img src="1.jpg" alt="Момент 1"></div>
+             <div class="photo-grid-item"><img src="2.jpg" alt="Момент 2"></div>
+                             <div class="photo-grid-item"><img src="3.jpg" alt="Момент 3"></div>
+
+                <div class="photo-grid-item"><img src="4.jpg" alt="Момент 4"></div>
+
             </div>
 
-            <p class="sub-text">Мы сказали друг другу «Да»</p>
+            <p class="sub-text fade-up delay-2">Мы сказали друг другу «Да»</p>
         </div>
     </section>
 
     <!-- 2. ВТОРОЙ БЛОК: ТЕКСТ СЛЕВА, ФОТО СПРАВА -->
     <section class="details-section">
         <div class="container">
-            <div class="text-content">
+            <div class="text-content fade-up">
                 <h2>Дорогие друзья!</h2>
                 <p class="invitation-text">
                     Один день в этом году будет для нас особенным, и мы хотим разделить его с вами. <br><br>
@@ -688,8 +510,8 @@
                     <span class="time">в 15:30</span>
                 </div>
             </div>
-            <div class="photo-container">
-                <img src="https://via.placeholder.com/600x800?text=Никита+и+Мария" alt="Никита и Мария" loading="lazy">
+            <div class="photo-container fade-up delay-1">
+                <img src="молодые.jpg" alt="Никита и Мария" loading="lazy">
             </div>
         </div>
     </section>
@@ -697,8 +519,8 @@
     <!-- 3. ТРЕТИЙ БЛОК: КАЛЕНДАРЬ (ВЫДЕЛЕНО 16) -->
     <section class="calendar-section">
         <div class="container">
-            <h3 class="calendar-title">Сохраните дату</h3>
-            <div class="calendar-strip">
+            <h3 class="calendar-title fade-up">Сохраните дату</h3>
+            <div class="calendar-strip fade-up delay-1">
                 <div class="day-item"><span class="day-name">Чт</span><span class="day-number">13</span></div>
                 <div class="day-item"><span class="day-name">Пт</span><span class="day-number">14</span></div>
                 <div class="day-item"><span class="day-name">Сб</span><span class="day-number">15</span></div>
@@ -710,19 +532,19 @@
                 <div class="day-item"><span class="day-name">Пт</span><span class="day-number">21</span></div>
                 <div class="day-item"><span class="day-name">Сб</span><span class="day-number">22</span></div>
             </div>
-            <p style="text-align: center; margin-top: 20px; font-style: italic; opacity: 0.7; letter-spacing: 2px;">16 августа 2026</p>
+            <p style="text-align: center; margin-top: 20px; font-style: italic; opacity: 0.7; letter-spacing: 2px;" class="fade-up delay-2">16 августа 2026</p>
         </div>
     </section>
 
     <!-- 4. ЧЕТВЁРТЫЙ БЛОК: МЕСТО ТОРЖЕСТВА -->
     <section class="venue-section">
         <div class="container">
-            <h2>Место торжества</h2>
+            <h2 class="fade-up">Место торжества</h2>
             <div class="venue-container">
-                <div class="venue-photo">
-                    <img src="https://via.placeholder.com/600x800?text=Ресторан" alt="Фото ресторана">
+                <div class="venue-photo fade-up delay-1">
+                    <img src="локация.jpg" alt="Фото ресторана">
                 </div>
-                <div class="venue-info">
+                <div class="venue-info fade-up delay-2">
                     <h3 class="venue-name">Ресторан «Элеганс»</h3>
                     <p class="venue-address">г. Минск, пр-т Победителей, 59<br>Сбор гостей в 15:30</p>
                     <div class="map-wrapper">
@@ -736,12 +558,12 @@
     <!-- 5. ПЯТЫЙ БЛОК: ТАЙМЕР ОБРАТНОГО ОТСЧЁТА -->
     <section class="timer-section">
         <div class="container">
-            <h2 class="timer-title">До торжества осталось</h2>
+            <h2 class="timer-title fade-up">До торжества осталось</h2>
             <div class="timer-container" id="wedding-timer">
-                <div class="timer-item"><span class="timer-value" id="days">00</span><span class="timer-label">Дней</span></div>
-                <div class="timer-item"><span class="timer-value" id="hours">00</span><span class="timer-label">Часов</span></div>
-                <div class="timer-item"><span class="timer-value" id="minutes">00</span><span class="timer-label">Минут</span></div>
-                <div class="timer-item"><span class="timer-value" id="seconds">00</span><span class="timer-label">Секунд</span></div>
+                <div class="timer-item fade-up delay-1"><span class="timer-value" id="days">00</span><span class="timer-label">Дней</span></div>
+                <div class="timer-item fade-up delay-2"><span class="timer-value" id="hours">00</span><span class="timer-label">Часов</span></div>
+                <div class="timer-item fade-up delay-3"><span class="timer-value" id="minutes">00</span><span class="timer-label">Минут</span></div>
+                <div class="timer-item fade-up delay-4"><span class="timer-value" id="seconds">00</span><span class="timer-label">Секунд</span></div>
             </div>
         </div>
     </section>
@@ -749,12 +571,12 @@
     <!-- 6. ШЕСТОЙ БЛОК: ПРОГРАММА ДНЯ -->
     <section class="timing-section">
         <div class="container">
-            <h2>Программа дня</h2>
+            <h2 class="fade-up">Программа дня</h2>
             <div class="timing-list">
-                <div class="timing-item"><span class="time">15:30</span><div class="event-details"><span class="event-name">Сбор гостей</span><span class="event-desc">Welcome-зона, легкие закуски и живая музыка</span></div></div>
-                <div class="timing-item"><span class="time">16:00</span><div class="event-details"><span class="event-name">Церемония</span><span class="event-desc">Самый трогательный момент нашего дня</span></div></div>
-                <div class="timing-item"><span class="time">17:00</span><div class="event-details"><span class="event-name">Свадебный ужин</span><span class="event-desc">Банкет, поздравления и теплая атмосфера</span></div></div>
-                <div class="timing-item"><span class="time">21:00</span><div class="event-details"><span class="event-name">Торт и танцы</span><span class="event-desc">Сладкий финал и зажигательная вечеринка</span></div></div>
+                <div class="timing-item fade-up delay-1"><span class="time">15:30</span><div class="event-details"><span class="event-name">Сбор гостей</span><span class="event-desc">Welcome-зона, легкие закуски и живая музыка</span></div></div>
+                <div class="timing-item fade-up delay-2"><span class="time">16:00</span><div class="event-details"><span class="event-name">Церемония</span><span class="event-desc">Самый трогательный момент нашего дня</span></div></div>
+                <div class="timing-item fade-up delay-3"><span class="time">17:00</span><div class="event-details"><span class="event-name">Свадебный ужин</span><span class="event-desc">Банкет, поздравления и теплая атмосфера</span></div></div>
+                <div class="timing-item fade-up delay-4"><span class="time">21:00</span><div class="event-details"><span class="event-name">Торт и танцы</span><span class="event-desc">Сладкий финал и зажигательная вечеринка</span></div></div>
             </div>
         </div>
     </section>
@@ -762,20 +584,20 @@
     <!-- 7. СЕДЬМОЙ БЛОК: ВАЖНЫЕ ДЕТАЛИ И ДРЕСС-КОД -->
     <section class="details-dresscode-section">
         <div class="container">
-            <h2>Важные детали</h2>
+            <h2 class="fade-up">Важные детали</h2>
             <div class="details-grid">
-                <div class="detail-item"><h4>Цветы</h4><p>Мы будем признательны, если вместо срезанных цветов вы решите подарить нам бутылку вашего любимого вина для нашей будущей коллекции.</p></div>
-                <div class="detail-item"><h4>Трансфер</h4><p>Для вашего удобства после окончания торжества будет организован трансфер, который доставит вас в центр города.</p></div>
+                <div class="detail-item fade-up delay-1"><h4>Цветы</h4><p>Мы будем признательны, если вместо срезанных цветов вы решите подарить нам бутылку вашего любимого вина для нашей будущей коллекции.</p></div>
+                <div class="detail-item fade-up delay-2"><h4>Трансфер</h4><p>Для вашего удобства после окончания торжества будет организован трансфер, который доставит вас в центр города.</p></div>
             </div>
             <div class="dresscode-container">
-                <h2>Дресс-код</h2>
-                <p class="dresscode-text">Будем благодарны, если при выборе наряда вы придержитесь <br> Black Tie или классической цветовой палитры нашего торжества:</p>
+                <h2 class="fade-up">Дресс-код</h2>
+                <p class="dresscode-text fade-up delay-1">Будем благодарны, если при выборе наряда вы придержитесь <br> Black Tie или классической цветовой палитры нашего торжества:</p>
                 <div class="palette">
-                    <div class="color-stroke c1"></div>
-                    <div class="color-stroke c2"></div>
-                    <div class="color-stroke c3"></div>
-                    <div class="color-stroke c4"></div>
-                    <div class="color-stroke c5"></div>
+                    <div class="color-stroke c1 fade-up delay-2"></div>
+                    <div class="color-stroke c2 fade-up delay-3"></div>
+                    <div class="color-stroke c3 fade-up delay-4"></div>
+                    <div class="color-stroke c4 fade-up delay-5"></div>
+                    <div class="color-stroke c5 fade-up" style="transition-delay: 0.6s;"></div>
                 </div>
             </div>
         </div>
@@ -784,36 +606,36 @@
     <!-- 8. ВОСЬМОЙ БЛОК: АНКЕТА ГОСТЯ (RSVP) -->
     <section class="rsvp-section">
         <div class="container">
-            <h2 class="rsvp-title">Анкета гостя</h2>
-            <p class="rsvp-subtitle">Пожалуйста, ответьте на вопросы до 1 августа 2026 года</p>
+            <h2 class="rsvp-title fade-up">Анкета гостя</h2>
+            <p class="rsvp-subtitle fade-up delay-1">Пожалуйста, ответьте на вопросы до 1 августа 2026 года</p>
             <form class="rsvp-form" id="wedding-form">
-                <div class="form-group">
+                <div class="form-group fade-up delay-1">
                     <label for="name">Ваши имя и фамилия</label>
                     <input type="text" id="name" name="name" placeholder="Иван и Мария Ивановы" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group fade-up delay-2">
                     <label>Сможете ли вы присутствовать?</label>
                     <div class="radio-group">
                         <label class="radio-option"><input type="radio" name="attendance" value="yes" required> Я/Мы придем</label>
                         <label class="radio-option"><input type="radio" name="attendance" value="no"> К сожалению, не сможем</label>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group fade-up delay-3">
                     <label for="drinks">Ваши предпочтения по напиткам</label>
                     <input type="text" id="drinks" name="drinks" placeholder="Вино (красное/белое), виски, б/а...">
                 </div>
-                <div class="form-group">
+                <div class="form-group fade-up delay-4">
                     <label for="food">Особенности питания</label>
                     <textarea id="food" name="food" rows="2" placeholder="Например: аллергия на орехи, вегетарианское меню..."></textarea>
                 </div>
-                <div class="form-group">
+                <div class="form-group fade-up delay-5">
                     <label>Нужен ли вам трансфер?</label>
                     <div class="radio-group">
                         <label class="radio-option"><input type="radio" name="shuttle" value="yes"> Да</label>
                         <label class="radio-option"><input type="radio" name="shuttle" value="no"> Нет, доберусь сам</label>
                     </div>
                 </div>
-                <button type="submit" class="rsvp-button">Отправить ответ</button>
+                <button type="submit" class="rsvp-button fade-up" style="transition-delay: 0.6s;">Отправить ответ</button>
             </form>
         </div>
     </section>
@@ -821,7 +643,7 @@
     <!-- СКРИПТЫ -->
     <script>
         (function() {
-            // ----- АНИМАЦИЯ ПОЯВЛЕНИЯ СЕКЦИЙ ПРИ СКРОЛЛЕ -----
+            // ----- АНИМАЦИЯ ПОЯВЛЕНИЯ СЕКЦИЙ ПРИ СКРОЛЛЕ (добавляем класс visible) -----
             const sections = document.querySelectorAll('section');
             const sectionObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
