@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>Никита и Мария · Свадьба 16.08.2026</title>
     <!-- Шрифты -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cinzel&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -41,6 +40,14 @@
             padding: 40px 20px;
             width: 100%;
             overflow-x: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .container {
@@ -49,10 +56,9 @@
             margin: 0 auto;
         }
 
-        /* ----- ПЕРВЫЙ БЛОК (hero) ----- */
+        /* ----- ПЕРВЫЙ БЛОК (hero) — теперь с фото-сеткой 2x2 ----- */
         .hero-section {
             text-align: center;
-            animation: fadeInPage 2s ease-in-out;
         }
 
         .hero-section h1 {
@@ -61,7 +67,11 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             font-weight: 400;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
+        }
+
+        .hero-date {
+            margin-bottom: 40px;
         }
 
         .hero-date .number {
@@ -80,12 +90,34 @@
             margin-top: 10px;
         }
 
-        .heart-icon {
-            width: 70px;
-            margin: 40px auto;
+        /* Сетка 2x2 из квадратных фото */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            max-width: 320px;
+            margin: 0 auto 30px;
+        }
+
+        .photo-grid-item {
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
-            fill: black;
-            animation: heartPulse 1.5s infinite ease-in-out;
+            filter: grayscale(0.3);
+            transition: filter 0.4s;
+        }
+
+        .photo-grid-item:hover img {
+            filter: grayscale(0);
         }
 
         .hero-section .sub-text {
@@ -93,6 +125,7 @@
             letter-spacing: 2px;
             font-style: italic;
             opacity: 0.8;
+            margin-top: 10px;
         }
 
         /* ----- ВТОРОЙ БЛОК (детали + фото) ----- */
@@ -169,7 +202,6 @@
             background: #fafafa;
             min-height: auto;
             padding: 60px 20px;
-            overflow-x: hidden;
         }
 
         .calendar-wrapper {
@@ -233,18 +265,12 @@
             color: #222;
         }
 
-        /* Выделение 16 августа — без сердца, но с жирным шрифтом и подчеркиванием */
         .special-day .day-number {
             font-weight: 700;
             font-style: italic;
             border-bottom: 3px solid #000;
             padding-bottom: 5px;
             color: #000;
-        }
-
-        /* Убираем сердце полностью */
-        .special-day::after {
-            display: none;
         }
 
         /* ----- ЧЕТВЁРТЫЙ БЛОК: МЕСТО ТОРЖЕСТВА ----- */
@@ -329,7 +355,7 @@
             border: none;
         }
 
-        /* ----- ПЯТЫЙ БЛОК: ТАЙМЕР ОБРАТНОГО ОТСЧЁТА ----- */
+        /* ----- ПЯТЫЙ БЛОК: ТАЙМЕР ----- */
         .timer-section {
             padding: 80px 20px;
             text-align: center;
@@ -384,7 +410,7 @@
             margin-top: 5px;
         }
 
-        /* ----- ШЕСТОЙ БЛОК: ПРОГРАММА ДНЯ (ТАЙМИНГ) ----- */
+        /* ----- ШЕСТОЙ БЛОК: ПРОГРАММА ДНЯ ----- */
         .timing-section {
             padding: 80px 20px;
             background: #fafafa;
@@ -629,18 +655,7 @@
             letter-spacing: 4px;
         }
 
-        /* ----- АНИМАЦИИ ----- */
-        @keyframes fadeInPage {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes heartPulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.15); opacity: 0.6; }
-        }
-
-        /* ----- АДАПТИВНОСТЬ (МОБИЛЬНЫЕ УСТРОЙСТВА) ----- */
+        /* ----- АДАПТИВНОСТЬ ДЛЯ IPHONE И МОБИЛЬНЫХ ----- */
         @media (max-width: 700px) {
             .details-section {
                 gap: 15px;
@@ -693,6 +708,11 @@
                 flex-direction: column;
                 gap: 10px;
             }
+
+            .photo-grid {
+                max-width: 280px;
+                gap: 8px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -701,7 +721,15 @@
             }
 
             .hero-section h1 {
-                margin-bottom: 40px;
+                margin-bottom: 30px;
+            }
+
+            .hero-date {
+                margin-bottom: 30px;
+            }
+
+            .photo-grid {
+                max-width: 260px;
             }
 
             .details-section {
@@ -769,22 +797,32 @@
             }
         }
 
-        /* Для очень маленьких экранов */
-        @media (max-width: 360px) {
-            .details-section {
-                gap: 5px;
+        /* iPhone SE / маленькие */
+        @media (max-width: 375px) {
+            .photo-grid {
+                max-width: 240px;
+                gap: 6px;
+            }
+
+            .hero-date .number {
+                font-size: 4.5rem;
             }
 
             .photo-container img {
                 max-width: 120px;
             }
 
-            .date-info .big-day {
-                font-size: 2.2rem;
+            .timer-item {
+                width: 65px;
+                height: 65px;
+            }
+
+            .timer-value {
+                font-size: 1.2rem;
             }
         }
 
-        /* Дополнительно */
+        /* Анимация появления секций через Intersection Observer */
         .calendar-strip {
             scrollbar-width: thin;
             scrollbar-color: #aaa #eee;
@@ -797,16 +835,11 @@
         .photo-container img:hover {
             transform: scale(1.01);
         }
-
-        /* Чтобы все секции занимали полную ширину на мобильных */
-        .container, .calendar-wrapper, .venue-section, .timer-section, .timing-section, .details-dresscode-section, .rsvp-section {
-            width: 100%;
-        }
     </style>
 </head>
 <body>
 
-    <!-- 1. ПЕРВЫЙ БЛОК: ИМЕНА И ДАТА -->
+    <!-- 1. ПЕРВЫЙ БЛОК: ИМЕНА, ДАТА И ФОТО-СЕТКА 2x2 -->
     <section class="hero-section">
         <div class="container">
             <h1>Никита и Мария</h1>
@@ -814,9 +847,15 @@
                 <span class="number">16</span>
                 <span class="month">Августа</span>
             </div>
-            <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            </svg>
+
+            <!-- Сетка из 4 квадратных фото (замените src на свои) -->
+            <div class="photo-grid">
+                <div class="photo-grid-item"><img src="https://via.placeholder.com/300x300?text=Фото+1" alt="Момент 1"></div>
+                <div class="photo-grid-item"><img src="https://via.placeholder.com/300x300?text=Фото+2" alt="Момент 2"></div>
+                <div class="photo-grid-item"><img src="https://via.placeholder.com/300x300?text=Фото+3" alt="Момент 3"></div>
+                <div class="photo-grid-item"><img src="https://via.placeholder.com/300x300?text=Фото+4" alt="Момент 4"></div>
+            </div>
+
             <p class="sub-text">Мы сказали друг другу «Да»</p>
         </div>
     </section>
@@ -840,7 +879,7 @@
         </div>
     </section>
 
-    <!-- 3. ТРЕТИЙ БЛОК: КАЛЕНДАРЬ (БЕЗ СЕРДЦА, ВЫДЕЛЕНО 16) -->
+    <!-- 3. ТРЕТИЙ БЛОК: КАЛЕНДАРЬ (ВЫДЕЛЕНО 16) -->
     <section class="calendar-section">
         <div class="calendar-wrapper">
             <h3 class="calendar-title">Сохраните дату</h3>
@@ -865,7 +904,7 @@
         <h2 class="section-title">Место торжества</h2>
         <div class="venue-container">
             <div class="venue-photo">
-                <img src="локация.jpg" alt="Фото ресторана">
+                <img src="https://via.placeholder.com/600x800" alt="Фото ресторана">
             </div>
             <div class="venue-info">
                 <h3 class="venue-name">Ресторан «Элеганс»</h3>
@@ -956,53 +995,73 @@
 
     <!-- СКРИПТЫ -->
     <script>
-        // ----- ТАЙМЕР -----
-        const weddingDate = new Date("August 16, 2026 15:30:00").getTime();
+        (function() {
+            // ----- АНИМАЦИЯ ПОЯВЛЕНИЯ СЕКЦИЙ ПРИ СКРОЛЛЕ -----
+            const sections = document.querySelectorAll('section');
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -10px 0px' });
+            sections.forEach(section => sectionObserver.observe(section));
 
-        const updateTimer = () => {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
+            // ----- ТАЙМЕР -----
+            const weddingDate = new Date("August 16, 2026 15:30:00").getTime();
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            const timerTitle = document.querySelector('.timer-title');
+            const timerContainer = document.getElementById('wedding-timer');
 
-            if (distance < 0) {
-                document.querySelector(".timer-title").innerHTML = "Этот день настал!";
-                document.getElementById("wedding-timer").style.display = "none";
-                return;
+            function updateTimer() {
+                const now = new Date().getTime();
+                const distance = weddingDate - now;
+
+                if (distance < 0) {
+                    if (timerTitle) timerTitle.innerHTML = "Этот день настал!";
+                    if (timerContainer) timerContainer.style.display = "none";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if (daysEl) daysEl.innerText = days.toString().padStart(2, '0');
+                if (hoursEl) hoursEl.innerText = hours.toString().padStart(2, '0');
+                if (minutesEl) minutesEl.innerText = minutes.toString().padStart(2, '0');
+                if (secondsEl) secondsEl.innerText = seconds.toString().padStart(2, '0');
             }
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            setInterval(updateTimer, 1000);
+            updateTimer();
 
-            document.getElementById("days").innerText = days.toString().padStart(2, '0');
-            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
-        };
+            // ----- АНИМАЦИЯ ЭЛЕМЕНТОВ ТАЙМИНГА (дополнительно) -----
+            const timingItems = document.querySelectorAll('.timing-item');
+            const timingObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, idx) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, idx * 120);
+                    }
+                });
+            }, { threshold: 0.2 });
+            timingItems.forEach(item => timingObserver.observe(item));
 
-        setInterval(updateTimer, 1000);
-        updateTimer();
-
-        // ----- АНИМАЦИЯ ТАЙМИНГА (Intersection Observer) -----
-        const observerOptions = { threshold: 0.2 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, index * 150);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.timing-item').forEach(item => observer.observe(item));
-
-        // ----- ОБРАБОТКА ФОРМЫ (заглушка) -----
-        document.getElementById('wedding-form').onsubmit = function(e) {
-            e.preventDefault();
-            alert('Спасибо! Ваш ответ отправлен.');
-            // Здесь можно добавить реальную отправку данных
-        };
+            // ----- ОБРАБОТКА ФОРМЫ -----
+            const form = document.getElementById('wedding-form');
+            if (form) {
+                form.onsubmit = function(e) {
+                    e.preventDefault();
+                    alert('Спасибо! Ваш ответ отправлен.');
+                };
+            }
+        })();
     </script>
 </body>
 </html>
